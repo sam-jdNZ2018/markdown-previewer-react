@@ -1,3 +1,8 @@
+# React Markdown Previewer
+This project is a React based interpretation of the 'Build a Markdown Previewer' project from the 'Front-End Libraries' section of FreeCodeCamp's curriculum. The original design document for this project can be [found of FreeCodeCamp's website](https://learn.freecodecamp.org/front-end-libraries/front-end-libraries-projects/build-a-markdown-previewer).
+
+The following information was generated from the Create React App tool.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
