@@ -1,4 +1,7 @@
-const render = ReactDOM;
+import React from 'react';
+import './style.css';
+import marked from 'marked';
+
 const OPTIONS = {breaks: true};
 
 marked.setOptions(OPTIONS);
@@ -155,4 +158,4 @@ class MarkApp extends React.Component{
   }
 }
 
-ReactDOM.render(<MarkApp/>, document.getElementById("main"));
+export default MarkApp;
