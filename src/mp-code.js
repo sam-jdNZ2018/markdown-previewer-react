@@ -102,8 +102,6 @@ class MarkApp extends React.Component{
   
   //
   handleResize(e){
-    let width = e.target.innerWidth;
-    let height = e.target.innerHeight;
     if(e.target.innerWidth < 800){
        this.setState({markdown: this.state.markdown, view: "stack", disabledView: true});
     }
