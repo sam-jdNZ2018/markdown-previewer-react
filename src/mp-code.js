@@ -2,12 +2,12 @@ import React from 'react';
 import './style.css';
 import marked from 'marked';
 
-const OPTIONS = {breaks: true};
+const OPTIONS = { breaks: true };
 
 marked.setOptions(OPTIONS);
 
-const placeholder = 
-`# Welcome to my React Markdown Previewer!
+const placeholder =
+  `# Welcome to my React Markdown Previewer!
 
 ## This is a sub-heading...
 ### And here's some other cool stuff:
@@ -58,100 +58,101 @@ const Editor = props => {
   return (
     <div id="editor-outer" style={props.style} >
       <h2>Editor</h2>
-      <textarea id="editor" style={props.subStyle} onChange={props.convertText} value={props.text}/>
-    </div>
-    );
-};
-
-const Previewer = props => {
-  return (
-    <div id="preview-outer" style={props.style}> 
-      <h2>Previewer</h2>
-      <div id="preview"  dangerouslySetInnerHTML={{__html: props.markdown}}></div>
+      <textarea id="editor" style={props.subStyle} onChange={props.convertText} value={props.text} />
     </div>
   );
 };
 
-class MarkApp extends React.Component{
-  constructor(props){
+const Previewer = props => {
+  return (
+    <div id="preview-outer" style={props.style}>
+      <h2>Previewer</h2>
+      <div id="preview" dangerouslySetInnerHTML={{ __html: props.markdown }}></div>
+    </div>
+  );
+};
+
+class MarkApp extends React.Component {
+  constructor(props) {
     super(props);
     let disabled = false;
-    if(window.innerWidth < 800){
+    if (window.innerWidth < 800) {
       disabled = true;
     }
-    this.state = {markdown: placeholder, view: "stack", disabledView : disabled};
+    this.state = { markdown: placeholder, view: "stack", disabledView: disabled };
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.convert = this.convert.bind(this);
     this.switchView = this.switchView.bind(this);
     this.clearEditor = this.clearEditor.bind(this);
   }
-  
-  componentDidMount(){
-    //window.addEventListener("resize",this.handleResize);
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
   }
-  
-  componentDidUnmount(){
-    //window.removeEventListener("resize",this.handleResize);
+
+  componentDidUnmount() {
+    window.removeEventListener("resize", this.handleResize);
   }
-  
+
   //Set the current text in state to the current text in the editor
-  handleEditorChange(e){
-    this.setState({markdown: e.target.value, view: this.state.view, disabledView: this.state.disabledView});
+  handleEditorChange(e) {
+    this.setState({ markdown: e.target.value, view: this.state.view, disabledView: this.state.disabledView });
   }
-  
-  //
-  handleResize(e){
-    if(e.target.innerWidth < 800){
-       this.setState({markdown: this.state.markdown, view: "stack", disabledView: true});
+
+  //Force the editor and previewer to be displayed one above the other if the window is less than 800px wide
+  //while also disabling the 'Switch View' button
+  handleResize(e) {
+    if (e.target.innerWidth < 800) {
+      this.setState({ markdown: this.state.markdown, view: "stack", disabledView: true });
     }
-    else{
-      this.setState({markdown: this.state.markdown, view: this.state.view, disabledView: false, editorMinimised: this.state.editorMinimised, previewMinimised: this.state.previewMinimised});
+    else {
+      this.setState({ markdown: this.state.markdown, view: this.state.view, disabledView: false, editorMinimised: this.state.editorMinimised, previewMinimised: this.state.previewMinimised });
     }
   }
-  
+
   //Convert the text in the editor pane into parsed github flavoured markdown
-  convert(){
-    return marked(this.state.markdown); 
+  convert() {
+    return marked(this.state.markdown);
   }
-   
+
   //Switch the orientation of the two containers(editor and preview) between editor above the previewer
   //or the editor next to the previewer
-  switchView(){
-    if(this.state.view == "stack"){
-      this.setState({markdown: this.state.markdown, view: "aside", disabledView: this.state.disabledView});
-    } 
-    else{
-      this.setState({markdown: this.state.markdown, view: "stack", disabledView: this.state.disabledView});
+  switchView() {
+    if (this.state.view == "stack") {
+      this.setState({ markdown: this.state.markdown, view: "aside", disabledView: this.state.disabledView });
+    }
+    else {
+      this.setState({ markdown: this.state.markdown, view: "stack", disabledView: this.state.disabledView });
     }
   }
-  
+
   //Clear all the text in the editor pane
-  clearEditor(){
-    this.setState({markdown: "", view: this.state.view, disabledView: this.state.disabledView});  
+  clearEditor() {
+    this.setState({ markdown: "", view: this.state.view, disabledView: this.state.disabledView });
   }
-  
-  render(){
-    let paneStyle = {display: "grid", gridTemplateRows: "auto 1fr", gridRowGap: "20px"};
+
+  render() {
+    let paneStyle = { display: "grid", gridTemplateRows: "auto 1fr", gridRowGap: "20px" };
     let editorStyle = {};
     let previewStyle = {};
-    if(this.state.view != "stack"){
-      paneStyle = {display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "10px"};
-      editorStyle = {height: "100%", width: "100%"};
-      previewStyle = {height: "100%", width: "100%"};
+    if (this.state.view != "stack") {
+      paneStyle = { display: "grid", gridTemplateColumns: "1fr 1fr", gridColumnGap: "10px" };
+      editorStyle = { height: "100%", width: "100%" };
+      previewStyle = { height: "100%", width: "100%" };
     }
-    return(
-    <div id="app-outer">
+    return (
+      <div id="app-outer">
         <h1 id="title">Markdown Previewer</h1>
         <div id="button-div">
           <button type="button" onClick={this.switchView} disabled={this.state.disabledView}>Switch Views</button>
           <button type="button" onClick={this.clearEditor}>Clear Editor</button>
         </div>
         <div id="app-inner" style={paneStyle}>
-        <Editor style={editorStyle} convertText={this.handleEditorChange} text={this.state.markdown}/>
-        <Previewer style={previewStyle} markdown={this.convert()}/>
+          <Editor style={editorStyle} convertText={this.handleEditorChange} text={this.state.markdown} />
+          <Previewer style={previewStyle} markdown={this.convert()} />
         </div>
-        </div>
+      </div>
     );
   }
 }
