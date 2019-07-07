@@ -10,6 +10,10 @@ Built using:
 * React-dom 16.8.6
 * create-react-app (For allowing code to be written in Babel)
 
+## Acknowledgements
+
+Thomas Alleman (FreeCodeCamp user talleman21) for assistance in setting up create-react-app.
+
 The following information was generated from the Create React App tool.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
