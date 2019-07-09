@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './main-style.scss';
 import marked from 'marked';
 
 const OPTIONS = { breaks: true };
