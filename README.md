@@ -2,7 +2,7 @@
 
 Viewable at [this link](https://sam-jdnz2018.github.io/markdown-previewer-react/).
 
-This project is a React based interpretation of the 'Build a Markdown Previewer' project from the 'Front-End Libraries' section of FreeCodeCamp's curriculum. It was built from a version I made [on CodePen](https://codepen.io/sam_donaldson2018/pen/bZmvjX). The original design document for this project can be [found of FreeCodeCamp's website](https://learn.freecodecamp.org/front-end-libraries/front-end-libraries-projects/build-a-markdown-previewer).
+This project is a React based interpretation of the 'Build a Markdown Previewer' project from the 'Front-End Libraries' section of FreeCodeCamp's curriculum. The original version was imported into Github from CodePen.
 
 ## Contributors
 
@@ -16,6 +16,12 @@ Built using:
 * React 16.8.6
 * React-dom 16.8.6
 * create-react-app (For allowing code to be written in Babel)
+
+## Relevant Links
+
+* [Original CodePen Link](https://codepen.io/sam_donaldson2018/pen/bZmvjX)
+* [JQuery Version Repository](https://github.com/sam-jdNZ2018/markdown-previewer-jquery)
+* [FreeCodeCamp Design Document](https://learn.freecodecamp.org/front-end-libraries/front-end-libraries-projects/build-a-markdown-previewer)
 
 ## Acknowledgements
 
